@@ -9,6 +9,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -20,7 +22,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
     private static final LatLng BRISBANE = new LatLng(-27.47093, 153.0235);
 
-
+    private Marker mMelbourne;
     private Marker mPerth;
     private Marker mSydney;
     private Marker mBrisbane;
@@ -51,10 +53,14 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        mPerth = mMap.addMarker(new MarkerOptions()
-                .position(PERTH)
-                .title("Perth"));
+        final LatLng PERTH = new LatLng(-31.90, 115.86);
+         mPerth = googleMap.addMarker(
+                new MarkerOptions()
+                        .position(PERTH)
+                        .draggable(true)
+                         .title("perth"));
         mPerth.setTag(0);
+
         mSydney = mMap.addMarker(new MarkerOptions()
                 .position(SYDNEY)
                 .title("Sydney"));
@@ -62,8 +68,24 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
         mBrisbane = mMap.addMarker(new MarkerOptions()
                 .position(BRISBANE)
-                .title("Brisbane"));
+                .title("Brisbane")
+                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
         mBrisbane.setTag(0);
+
+        final LatLng MELBOURNE = new LatLng(-37.813, 144.962);
+         mMelbourne = googleMap.addMarker(
+                new MarkerOptions()
+                        .position(MELBOURNE)
+                        .title("melbourne")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                        .alpha(0.7f)
+
+
+         );
+
+        mMelbourne.setTag(0);
+
+
 
         mMap.setOnMarkerClickListener(this);
 
