@@ -2,6 +2,7 @@ package com.example.googlemap;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -11,9 +12,15 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,
         OnMapReadyCallback {
@@ -78,18 +85,13 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                         .position(MELBOURNE)
                         .title("melbourne")
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                        .alpha(0.7f)
-
-
-         );
-
-        mMelbourne.setTag(0);
-
-
-
-        mMap.setOnMarkerClickListener(this);
+                        .snippet("Population: 4,137,400"));
+            mMelbourne.showInfoWindow();
+            mMelbourne.setTag(0);
+            mMap.setOnMarkerClickListener(this);
 
     }
+
 
     @Override
     public boolean onMarkerClick( final Marker marker) {
@@ -108,4 +110,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
         return false;
     }
+
+
 }
